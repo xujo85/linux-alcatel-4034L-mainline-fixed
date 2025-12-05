@@ -1,9 +1,9 @@
-#!/bin/sudo sh
+#!/bin/sh
 # SPDX-License-Identifier: GPL-2.0
 
 extra_paholeopt=
 
-if ! [ -x "$(command -v ${PAHOLE})" ]; then
+if ! [ -x "$(command -v sudo ${PAHOLE})" ]; then
 	exit 0
 fi
 
