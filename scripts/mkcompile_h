@@ -10,14 +10,14 @@ if test -z "$KBUILD_BUILD_USER"; then
 else
 	LINUX_COMPILE_BY=$KBUILD_BUILD_USER
 fi
-if test -z "$KBUILD_BUILD_HOST"; then
+if  test -z "$KBUILD_BUILD_HOST"; then
 	LINUX_COMPILE_HOST=`sudo uname -n`
 else
 	LINUX_COMPILE_HOST=$KBUILD_BUILD_HOST
 fi
 
-LD_VERSION=$(LC_ALL=C $LD -v | head -n1 |
-		sed -e 's/(compatible with [^)]*)//' -e 's/[[:space:]]*$//')
+LD_VERSION=$(sudo LC_ALL=C $LD -v | sudo head -n1 |
+		sudo sed -e 's/(compatible with [^)]*)//' -e 's/[[:space:]]*$//')
 
 cat <<EOF
 #define UTS_MACHINE		"${UTS_MACHINE}"
