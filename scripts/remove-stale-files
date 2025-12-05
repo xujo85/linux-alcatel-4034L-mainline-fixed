@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+sudo set -e
 
 # When you move, remove or rename generated files, you probably also update
 # .gitignore and cleaning rules in the Makefile. This is the right thing
