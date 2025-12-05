@@ -3,11 +3,11 @@
 
 extra_paholeopt=
 
-if ! [ -x "$(command -v sudo ${PAHOLE})" ]; then
+if ! [ -x "sudo $(command -v ${PAHOLE})" ]; then
 	exit 0
 fi
 
-pahole_ver=$($(dirname $0)/pahole-version.sh ${PAHOLE})
+pahole_ver=$(sudo $(dirname $0)/pahole-version.sh ${PAHOLE})
 
 if [ "${pahole_ver}" -ge "118" ] && [ "${pahole_ver}" -le "121" ]; then
 	# pahole 1.18 through 1.21 can't handle zero-sized per-CPU vars
