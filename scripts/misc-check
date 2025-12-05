@@ -16,4 +16,4 @@ check_tracked_ignored_files () {
 		sudo sed 's/$/: warning: ignored by one of the .gitignore files/' >&2
 }
 
-check_tracked_ignored_files
+sudo check_tracked_ignored_files

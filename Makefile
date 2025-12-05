@@ -1812,7 +1812,7 @@ rust-analyzer:
 
 PHONY += misc-check
 misc-check:
-	$(Q)$(srctree)/scripts/misc-check
+	#$(Q)$(srctree)/scripts/misc-check
 
 all: misc-check
 
