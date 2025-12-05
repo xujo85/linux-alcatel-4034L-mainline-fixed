@@ -1025,7 +1025,7 @@ KBUILD_CFLAGS-$(call gcc-min-version, 90100) += -Wno-alloc-size-larger-than
 KBUILD_CFLAGS += $(KBUILD_CFLAGS-y) $(CONFIG_CC_IMPLICIT_FALLTHROUGH)
 
 # disable invalid "can't wrap" optimizations for signed / pointers
-KBUILD_CFLAGS	+= -fno-strict-overflow
+KBUILD_CFLAGS	+= -fno-strict-overflow -falign-functions
 
 # Make sure -fstack-check isn't enabled (like gentoo apparently did)
 KBUILD_CFLAGS  += -fno-stack-check
@@ -1036,7 +1036,7 @@ KBUILD_CFLAGS   += -fconserve-stack
 endif
 
 # Prohibit date/time macros, which would make the build non-deterministic
-KBUILD_CFLAGS   += -Werror=date-time
+KBUILD_CFLAGS   += -Werror=date-time 
 
 # enforce correct pointer usage
 KBUILD_CFLAGS   += $(call cc-option,-Werror=incompatible-pointer-types)
@@ -1230,8 +1230,8 @@ archprepare: outputmakefile archheaders archscripts scripts include/config/kerne
 	asm-generic $(version_h) include/generated/autoconf.h include/generated/utsrelease.h
 
 prepare0: archprepare
-	$(Q)$(MAKE) -falign-functions=16 $(build)=scripts/mod
-	$(Q)$(MAKE) -falign-functions=16 $(build)=. prepare
+	$(Q)$(MAKE) $(build)=scripts/mod
+	$(Q)$(MAKE) $(build)=. prepare
 
 # All the preparing..
 prepare: prepare0
