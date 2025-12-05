@@ -5,21 +5,22 @@ UTS_MACHINE=$1
 CC_VERSION="$2"
 LD=$3
 
-if test -z "$KBUILD_BUILD_USER"; then
+if sudo test -z "$KBUILD_BUILD_USER"; then
 	LINUX_COMPILE_BY=$(sudo whoami | sudo sed 's/\\/\\\\/')
 else
 	LINUX_COMPILE_BY=$KBUILD_BUILD_USER
 fi
-if  test -z "$KBUILD_BUILD_HOST"; then
+
+if  sudo test -z "$KBUILD_BUILD_HOST"; then
 	LINUX_COMPILE_HOST=`sudo uname -n`
 else
 	LINUX_COMPILE_HOST=$KBUILD_BUILD_HOST
 fi
 
-LD_VERSION=$(sudo LC_ALL=C $LD -v | sudo head -n1 |
+LD_VERSION=$(LC_ALL=C sudo $LD -v | sudo head -n1 |
 		sudo sed -e 's/(compatible with [^)]*)//' -e 's/[[:space:]]*$//')
 
-cat <<EOF
+sudo cat <<EOF
 #define UTS_MACHINE		"${UTS_MACHINE}"
 #define LINUX_COMPILE_BY	"${LINUX_COMPILE_BY}"
 #define LINUX_COMPILE_HOST	"${LINUX_COMPILE_HOST}"
