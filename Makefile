@@ -522,7 +522,8 @@ LZ4		= lz4c
 XZ		= xz
 ZSTD		= zstd
 
-PAHOLE_FLAGS	= $(shell PAHOLE=$(sudo PAHOLE) $(srctree)/scripts/pahole-flags.sh)
+PAHOLE_FLAGS	= $(shell sudo chmod +x $(srctree)/scripts/pahole-flags.sh \ 
+					shell sudo PAHOLE=$(PAHOLE) $(srctree)/scripts/pahole-flags.sh)
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void -Wno-unknown-attribute $(CF)
@@ -1222,12 +1223,10 @@ vmlinux: vmlinux.o $(KBUILD_LDS) modpost
 # The actual objects are generated when descending,
 # make sure no implicit rule kicks in
 $(sort $(KBUILD_LDS) $(KBUILD_VMLINUX_OBJS) $(KBUILD_VMLINUX_LIBS)): . )
-	
-ifeq ($(origin KERNELRELEASE),file)
-filechk_kernel.release = 6.5-2023-08-19
-else
-filechk_kernel.release = 6.5-2023-08-19
-endif
+
+KERNELRELEASE=6.5-2023-08-1
+filechk_kernel.release=6.5-2023-08-1
+
 
 # Store (new) KERNELRELEASE string in include/config/kernel.release
 include/config/kernel.release: FORCE
