@@ -1222,7 +1222,7 @@ vmlinux: vmlinux.o $(KBUILD_LDS) modpost
 # The actual objects are generated when descending,
 # make sure no implicit rule kicks in
 $(sort $(KBUILD_LDS) $(KBUILD_VMLINUX_OBJS) $(KBUILD_VMLINUX_LIBS)): . )
-KERNELRELEASE = 6.5-2023-08-19
+	
 ifeq ($(origin KERNELRELEASE),file)
 filechk_kernel.release = 6.5-2023-08-19
 else
