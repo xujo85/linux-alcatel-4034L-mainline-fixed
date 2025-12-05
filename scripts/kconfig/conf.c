@@ -21,7 +21,6 @@ static void check_conf(struct menu *menu);
 
 enum input_mode {
 	oldaskconfig,
-	syncconfig,
 	oldconfig,
 	allnoconfig,
 	allyesconfig,
@@ -669,7 +668,6 @@ static const struct option long_opts[] = {
 	{"silent",        no_argument,       NULL,            's'},
 	{"oldaskconfig",  no_argument,       &input_mode_opt, oldaskconfig},
 	{"oldconfig",     no_argument,       &input_mode_opt, oldconfig},
-	{"syncconfig",    no_argument,       &input_mode_opt, syncconfig},
 	{"defconfig",     required_argument, &input_mode_opt, defconfig},
 	{"savedefconfig", required_argument, &input_mode_opt, savedefconfig},
 	{"allnoconfig",   no_argument,       &input_mode_opt, allnoconfig},
@@ -779,7 +777,6 @@ int main(int ac, char **av)
 		}
 		break;
 	case savedefconfig:
-	case syncconfig:
 	case oldaskconfig:
 	case oldconfig:
 	case listnewconfig:
