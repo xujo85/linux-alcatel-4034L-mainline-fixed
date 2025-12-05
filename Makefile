@@ -1242,7 +1242,7 @@ endif
 
 PHONY += remove-stale-files
 remove-stale-files:
-	$(Q)$(srctree)/scripts/remove-stale-files
+	sudo $(Q)$(srctree)/scripts/remove-stale-files
 
 # Support for using generic headers in asm-generic
 asm-generic := -f $(srctree)/scripts/Makefile.asm-generic obj
@@ -1293,7 +1293,7 @@ $(version_h): FORCE
 include/generated/utsrelease.h: include/config/kernel.release FORCE
 	$(call filechk,utsrelease.h)
 
-filechk_compile.h = $(srctree)/scripts/mkcompile_h \
+filechk_compile.h = sudo $(srctree)/scripts/mkcompile_h \
 	"$(UTS_MACHINE)" "$(CONFIG_CC_VERSION_TEXT)" "$(LD)"
 
 include/generated/compile.h: FORCE
