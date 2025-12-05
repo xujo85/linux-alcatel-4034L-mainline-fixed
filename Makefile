@@ -522,7 +522,7 @@ LZ4		= lz4c
 XZ		= xz
 ZSTD		= zstd
 
-PAHOLE_FLAGS	= $(shell sudo chmod +x $(srctree)/scripts/pahole-flags.sh && shell sudo PAHOLE=$(PAHOLE) $(srctree)/scripts/pahole-flags.sh)
+PAHOLE_FLAGS	= $(shell su chmod +x $(srctree)/scripts/pahole-flags.sh && shell su PAHOLE=$(PAHOLE) $(srctree)/scripts/pahole-flags.sh)
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void -Wno-unknown-attribute $(CF)
@@ -1224,12 +1224,11 @@ vmlinux: vmlinux.o $(KBUILD_LDS) modpost
 $(sort $(KBUILD_LDS) $(KBUILD_VMLINUX_OBJS) $(KBUILD_VMLINUX_LIBS)): . )
 
 KERNELRELEASE=6.5-2023-08-1
-filechk_kernel.release=6.5-2023-08-1
 
 
 # Store (new) KERNELRELEASE string in include/config/kernel.release
 include/config/kernel.release: FORCE
-	$(call filechk,kernel.release)
+	$(KERNELRELEASE)
 
 # Additional helpers built in scripts/
 # Carefully list dependencies so we do not try to build scripts twice
