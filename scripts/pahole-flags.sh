@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sudo sh
 # SPDX-License-Identifier: GPL-2.0
 
 extra_paholeopt=
